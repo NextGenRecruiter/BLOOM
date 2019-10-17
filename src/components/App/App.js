@@ -13,9 +13,9 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
-import AboutPage from '../AboutPage/AboutPage';
+import GetChildInfo from '../GetchildInfo/GetchildInfo';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import AddChild from '../AddChild/AddChild';
 
 import './App.css';
 
@@ -37,7 +37,7 @@ class App extends Component {
             <Route
               exact
               path="/about"
-              component={AboutPage}
+              component={GetChildInfo}
             />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
@@ -53,7 +53,7 @@ class App extends Component {
             <ProtectedRoute
               exact
               path="/info"
-              component={InfoPage}
+              component={AddChild}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
