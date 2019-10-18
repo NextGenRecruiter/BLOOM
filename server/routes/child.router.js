@@ -33,6 +33,16 @@ router.post('/', (req, res) => {
  */
 router.get('/', (req, res) => {
 
+    let queryText = `SELECT * FROM "question";`;
+    pool.query(queryText)
+    .then((result) => {
+        res.send(result.rows)
+    })
+        .catch(error => {
+            console.log('Error making SELECT for developmental questions:', error);
+            res.sendStatus(500);
+        });
+
 });
 
 module.exports = router;
