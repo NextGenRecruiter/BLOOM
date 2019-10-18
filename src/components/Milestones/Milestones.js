@@ -20,18 +20,9 @@ handleClick = (milestone) =>{
 
     return(
         <div>
-        
         <Button variant="contained" size="large" color="primary" onClick={()=>this.handleClick('newborn')}>Newborn</Button>
         <Button variant="contained" size="large" color="primary" onClick={()=>this.handleClick('one-month')}>One Month</Button>
-
-            {/* {this.props.reduxState.questionReducer.map(question=>{
-                return(
-
-                    <Button variant="contained" size="large" color="primary" onClick={()=>this.handleClick(question.milestone)}>Newborn</Button>
-
-                )
-            
-            })} */}
+        <Button variant="contained" size="large" color="primary" onClick={()=>this.handleClick('two-months')}>Two Months</Button>
         </div>
     )
 }
