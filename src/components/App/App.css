@@ -32,7 +32,11 @@ input {
   outline:0;
   cursor: pointer;
 }
-
+.img{
+    border-radius: 70%;
+    width:200px;
+    height: 250px;
+}
 .log-in:hover, .log-out:hover, .register:hover {
   background-color: #008183;
 }

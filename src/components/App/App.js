@@ -16,6 +16,8 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import GetChildInfo from '../GetchildInfo/GetchildInfo';
 import UserPage from '../UserPage/UserPage';
 import AddChild from '../AddChild/AddChild';
+import Milestone from '../Milestones/Milestones';
+import Form from '../DMForm/DMForm';
 
 import './App.css';
 
@@ -54,6 +56,16 @@ class App extends Component {
               exact
               path="/info"
               component={AddChild}
+            />
+            <ProtectedRoute
+              exact
+              path="/milestone"
+              render={({match})=><Milestone match={match}/>}
+            />
+            <ProtectedRoute
+              exact
+              path="/form/:type"
+              render={({match})=><Form match={match}/>}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

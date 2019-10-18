@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import Button from '@material-ui/core/Button';
 
 class GetChildInfo extends Component{
 
@@ -8,6 +9,12 @@ class GetChildInfo extends Component{
 
 } 
 
+handleClick = () =>{
+  console.log('hello from handle click');
+  
+  this.props.history.push('/milestone');
+}
+
   render(){
     return(
       <div>
@@ -15,10 +22,22 @@ class GetChildInfo extends Component{
 
       {this.props.reduxState.newchildReducer.map(Child=>
       <div key={Child.id}>
-        {Child.type}
+        <img className="img" src={Child.picture} />
+        <br/>
+        First Name: {Child.firstname}
+        <br/>
+        Last Name: {Child.lastname}
+        <br/>
+        Age: {Child.age}
+        <br/>
+        Gender: {Child.gender}
       </div>)}
-      
+
+      <Button variant="contained" size="large" color="primary" onClick={this.handleClick}>
+          Add Milestone
+        </Button>
       </div>
+    
     );
 
 }

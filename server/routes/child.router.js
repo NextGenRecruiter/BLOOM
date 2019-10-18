@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
  */
 router.get('/', (req, res) => {
 
-    let queryText = `SELECT * FROM "question";`;
+    let queryText = `SELECT * FROM "child";`;
     pool.query(queryText)
     .then((result) => {
         res.send(result.rows)
