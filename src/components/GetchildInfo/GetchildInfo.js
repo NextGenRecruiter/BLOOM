@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 class GetChildInfo extends Component{
 
@@ -32,10 +33,9 @@ handleClick = () =>{
         <br/>
         Gender: {Child.gender}
       </div>)}
-
-      <Button variant="contained" size="large" color="primary" onClick={this.handleClick}>
-          Add Milestone
-        </Button>
+      <Fab color="primary" aria-label="Add" onClick={this.handleClick}>
+        <AddIcon />
+      </Fab>
       </div>
     
     );
