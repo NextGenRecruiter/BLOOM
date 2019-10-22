@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * GET route template
+ * POST route
  */
 router.post('/', (req, res) => {
     const newChild = req.body;
@@ -26,10 +26,34 @@ router.post('/', (req, res) => {
 
         res.sendStatus( 500 );
     })//end catch
+
+
+    ////////////// TEST
+
+    pool.query( 'SELECT * FROM question' ).then( (result)=>{
+        for( let i=0; i<result.rows.length; i++){
+            let values1=[
+                11,
+                result.rows[i].id, 
+                false
+            ]  
+            const query1 = `INSERT INTO "answer" ("child_id","question_id", "answer" ) VALUES ($1,$2,$3);`;
+            console.log( '-------->', values1 );
+            pool.query( query1, values1 ).then( ( results ) => {
+                console.log( 'added:', values1[1] )
+            } ).catch( ( error ) => {
+            console.log('ERROR with INSERT ', error);
+            })//end catch
+        }
+        res.send( 200 );
+    } )
+    
+
+    ///////////// TEST
 });
 
 /**
- * POST route template
+ * GET route
  */
 router.get('/', (req, res) => {
 

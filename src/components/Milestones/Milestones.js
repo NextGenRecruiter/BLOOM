@@ -9,7 +9,6 @@ class Milestone extends Component{
 
   componentDidMount = () =>{
     this.props.dispatch({ type: 'FETCH_QUESTION', payload: 'milestone'});
-    // this.props.dispatch({ type: 'FETCH_QUESTION'});
 } 
 
 handleClick = (milestone) =>{

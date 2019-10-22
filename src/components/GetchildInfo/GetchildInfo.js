@@ -23,7 +23,7 @@ handleClick = () =>{
 
       {this.props.reduxState.newchildReducer.map(Child=>
       <div key={Child.id}>
-        <img className="img" src={Child.picture} />
+        <img className="img" src={Child.picture} alt="amina looking at the camera"/>
         <br/>
         First Name: {Child.firstname}
         <br/>
@@ -36,6 +36,8 @@ handleClick = () =>{
       <Fab color="primary" aria-label="Add" onClick={this.handleClick}>
         <AddIcon />
       </Fab>
+
+      <hr/>
       </div>
     
     );

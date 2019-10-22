@@ -5,6 +5,7 @@ import userSaga from './userSaga';
 import newChildSaga from './newChildSaga'
 import FetchChildSaga from './FetchChildSaga'
 import FetchQuestionSaga from './FetchQuestionSaga'
+import postAnswerSaga from './postAnswerSaga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     newChildSaga(),
     FetchChildSaga(),
     FetchQuestionSaga(),
+    postAnswerSaga(),
   ]);
 }
