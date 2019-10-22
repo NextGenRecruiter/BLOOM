@@ -7,23 +7,42 @@ const router = express.Router();
  */
 router.post('/', (req, res) => {
     const answer = req.body;
-    pool.query( 'SELECT * FROM question' ).then( (result)=>{
-        for( let i=0; i<result.rows.length; i++){
-            let values1=[
-                11,
-                result.rows[i].id, 
-                false
-            ]  
-            const query1 = `INSERT INTO "answer" ("child_id","question_id", "answer" ) VALUES ($1,$2,$3);`;
-            console.log( '-------->', values1 );
-            pool.query( query1, values1 ).then( ( results ) => {
-                console.log( 'added:', values1[1] )
-            } ).catch( ( error ) => {
-            console.log('ERROR with INSERT ', error);
-            })//end catch
-        }
-        res.send( 200 );
-    } )
+
+    const values=[
+        req.body.child.id,
+        req.params.id,
+        req.body.answer
+        ]
+
+console.log(answer);   
+const query = `INSERT INTO "answer" ("child_id","question_id","answer") VALUES ($1,$2,$3);`;
+pool.query( query, values ).then( ( results ) => {
+res.sendStatus( 201 );
+
+} ).catch( ( error ) => {
+console.log('ERROR with INSERT ', error);
+
+res.sendStatus( 500 );
+})//end catch
+
+
+    // pool.query( 'SELECT * FROM question' ).then( (result)=>{
+    //     for( let i=0; i<result.rows.length; i++){
+    //         let values=[
+    //             req.params.id,
+    //             result.rows[i].id, 
+    //             false
+    //         ]  
+    //         const query1 = `INSERT INTO "answer" ("child_id","question_id", "answer" ) VALUES ($1,$2,$3);`;
+    //         console.log( '-------->', values1 );
+    //         pool.query( query, values ).then( ( results ) => {
+    //             console.log( 'added:', values1[1] )
+    //         } ).catch( ( error ) => {
+    //         console.log('ERROR with INSERT ', error);
+    //         })//end catch
+    //     }
+    //     res.send( 200 );
+    // } )
     
 });
 
