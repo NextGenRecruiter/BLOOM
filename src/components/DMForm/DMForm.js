@@ -29,39 +29,55 @@ const styles = theme => ({
 });
 
 class DMForm extends Component{
-  state={
-    child_id:this.props.reduxState.newchildReducer.id,
-    answers: []
+  state={ 
+      child_id:[],
+      answers:[]
 }
  
   componentDidMount = () =>{
     this.props.dispatch({ type: 'FETCH_QUESTION', payload: this.props.match.params.type});
-    
+    this.props.dispatch({ type: 'FETCH_CHILD' });
   }
 
+
 componentDidUpdate(prevProps) {
-  // Typical usage (don't forget to compare props):
+
   if (this.props.reduxState.questionReducer !== prevProps.reduxState.questionReducer) {
     let array = [];
     this.props.reduxState.questionReducer.map(question =>{
-     array.push({question_id:question.id, answer:false});
+     array.push({question_id:question.id, milestone:question.milestone, type:question.type, question:question.question, answer:false});
     })
     this.setState({
       answers:array,
     })
-  }
+  }else if(this.props.reduxState.newchildReducer !== prevProps.reduxState.newchildReducer){
+      let idArray = [];
+      this.props.reduxState.newchildReducer.map(id =>{
+        idArray.push({id:id.id});
+       })
+       this.setState({
+        child_id:idArray,
+       })
+    }
 }
 
 
-  handleChange = (event) =>{
+  handleChange = id => (event) => {
+    let newAnswers = this.state.answers.map(question =>{
+      if(question.question_id == id){
+        return ({...question, answer:!question.answer})
+      }else {
+        return question;
+      }
+    })
     this.setState({
-        answer: event.target.checked,
+        answers: newAnswers,
     })
 }
 
   handleSubmit = () =>{
     console.log('hello from handleSubmit', this.state.question);
-    this.props.dispatch({type:'ADD_ANSWER', payload:this.state.state});
+    this.props.dispatch({type:'ADD_ANSWER', payload:this.state});
 
     Swal.fire(
       'Good job!',
@@ -74,12 +90,11 @@ componentDidUpdate(prevProps) {
 
 
   render(){
-    console.log(this.state);
+    console.log(this.state.child_id);
     
     return(
       <div>
 
-      <Checkbox question={this.state.answer}/>
        <p>{this.props.match.params.type}</p>  
 
         <ExpansionPanel>
@@ -87,13 +102,13 @@ componentDidUpdate(prevProps) {
            <Typography >Motor</Typography>
          </ExpansionPanelSummary>
          <ExpansionPanelDetails>
-         {this.props.reduxState.questionReducer.map(question => question.type === "motor" ? (
-               <div key={question.id}>
+         {this.state.answers.map(question => question.type === "motor" ? (
+               <div key={question.question_id}>
                   <label>
                   <p>{question.question}</p>
                 <Checkbox
-                  // checked={this.state.answer}
-                  onChange={this.handleChange}
+                  value={question.answer}
+                  onChange={this.handleChange(question.question_id)}
                 />
                   </label>
                </div>
@@ -105,57 +120,72 @@ componentDidUpdate(prevProps) {
      
     {/* ////////////////////////////////////////////////// */}
  
-        {/* <ExpansionPanel>
+         <ExpansionPanel>
          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
            <Typography >Communication and Language</Typography>
          </ExpansionPanelSummary>
          <ExpansionPanelDetails>
-         {this.props.reduxState.questionReducer.map(question => question.type === "Talking" ? (
-               <div key={question.id}>
-                <input onChange={this.handleChange} id={this.id} type="checkbox" checked={this.state.answer} />
-                <label htmlFor={this.id}>{question.question}</label>
-               </div>
+         {this.state.answers.map(question => question.type === "Talking" ? (
+              <div key={question.question_id}>
+                <label>
+                <p>{question.question}</p>
+                  <Checkbox
+                  value={question.answer}
+                  onChange={this.handleChange(question.question_id)}
+                    />
+                  </label>
+                  </div>
                 ):(null)
                )}
          </ExpansionPanelDetails>
-     </ExpansionPanel>       */}
+     </ExpansionPanel>       
 
 
     {/* ////////////////////////////////////////////////// */}
 
  
-     {/* <ExpansionPanel>
+      <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography >Social and Emotional</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-        {this.props.reduxState.questionReducer.map(question => question.type === "Interacting" ? (
-              <div key={question.id}>
-               <input onChange={this.handleChange} id={this.id} type="checkbox" checked={this.state.answer} />
-                <label htmlFor={this.id}>{question.question}</label>
-              </div>
+        {this.state.answers.map(question => question.type === "Interacting" ? (
+              <div key={question.question_id}>
+                <label>
+                <p>{question.question}</p>
+                <Checkbox
+                value={question.answer}
+                onChange={this.handleChange(question.question_id)}
+                  />
+                </label>
+                  </div>
                ):(null)
               )}
         </ExpansionPanelDetails>
-      </ExpansionPanel>   */}
+      </ExpansionPanel>   
 
      {/* ////////////////////////////////////////////////// */}
 
  
-      {/* <ExpansionPanel>
+       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography >Cognitive</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-        {this.props.reduxState.questionReducer.map(question => question.type === "Thinking" ? (
-              <div key={question.id}>
-                 <input onChange={this.handleChange} id={this.id} type="checkbox" checked={this.state.answer} />
-                <label htmlFor={this.id}>{question.question}</label>
-              </div>
+        {this.state.answers.map(question => question.type === "Thinking" ? (
+              <div key={question.question_id}>
+                <label>
+                <p>{question.question}</p>
+                  <Checkbox
+                  value={question.answer}
+                  onChange={this.handleChange(question.question_id)}
+                    />
+                  </label>
+                    </div>    
                ):(null)
               )}
         </ExpansionPanelDetails>
-      </ExpansionPanel>  */}
+      </ExpansionPanel>  
 
      {/* ////////////////////////////////////////////////// */}
 {/*  
