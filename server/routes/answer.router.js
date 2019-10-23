@@ -5,45 +5,34 @@ const router = express.Router();
 /**
  * POST route
  */
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
     const answer = req.body;
+    console.log(answer.answers);
+    const child = answer.child_id[0].id;
+    for (let i = 0; i < answer.answers.length; i++) {
 
-    const values=[
-        req.body.child.id,
-        req.params.id,
-        req.body.answer
+        const values = [
+            child,
+            answer.answers[i].milestone,
+            answer.answers[i].type,
+            answer.answers[i].question,
+            answer.answers[i].answer,
         ]
+        console.log(values);
 
-console.log(answer);   
-const query = `INSERT INTO "answer" ("child_id","question_id","answer") VALUES ($1,$2,$3);`;
-pool.query( query, values ).then( ( results ) => {
-res.sendStatus( 201 );
+        const query = `INSERT INTO "answer" ("child_id","milestone", "question_type", "question", "answer") VALUES ($1,$2,$3,$4,$5);`;
+        pool.query(query, values).then((results) => {
 
-} ).catch( ( error ) => {
-console.log('ERROR with INSERT ', error);
+            // res.sendStatus(201);
 
-res.sendStatus( 500 );
-})//end catch
+        }).catch((error) => {
+            console.log('ERROR with INSERT ', error);
+
+            res.sendStatus(500);
+        })
+    }
 
 
-    // pool.query( 'SELECT * FROM question' ).then( (result)=>{
-    //     for( let i=0; i<result.rows.length; i++){
-    //         let values=[
-    //             req.params.id,
-    //             result.rows[i].id, 
-    //             false
-    //         ]  
-    //         const query1 = `INSERT INTO "answer" ("child_id","question_id", "answer" ) VALUES ($1,$2,$3);`;
-    //         console.log( '-------->', values1 );
-    //         pool.query( query, values ).then( ( results ) => {
-    //             console.log( 'added:', values1[1] )
-    //         } ).catch( ( error ) => {
-    //         console.log('ERROR with INSERT ', error);
-    //         })//end catch
-    //     }
-    //     res.send( 200 );
-    // } )
-    
 });
 
 /**

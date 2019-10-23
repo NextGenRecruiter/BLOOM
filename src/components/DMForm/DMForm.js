@@ -76,9 +76,7 @@ componentDidUpdate(prevProps) {
 }
 
   handleSubmit = () =>{
-    console.log('hello from handleSubmit', this.state.question);
     this.props.dispatch({type:'ADD_ANSWER', payload:this.state});
-
     Swal.fire(
       'Good job!',
       'New milestone has been added!',
@@ -89,9 +87,7 @@ componentDidUpdate(prevProps) {
 
 
 
-  render(){
-    console.log(this.state.child_id);
-    
+  render(){    
     return(
       <div>
 
