@@ -36,7 +36,7 @@ class DMForm extends Component{
  
   componentDidMount = () =>{
     this.props.dispatch({ type: 'FETCH_QUESTION', payload: this.props.match.params.type});
-    this.props.dispatch({ type: 'FETCH_CHILD' });
+    this.props.dispatch({ type: 'FETCH_CHILD'});
   }
 
 
@@ -64,7 +64,7 @@ componentDidUpdate(prevProps) {
 
   handleChange = id => (event) => {
     let newAnswers = this.state.answers.map(question =>{
-      if(question.question_id == id){
+      if(question.question_id === id){
         return ({...question, answer:!question.answer})
       }else {
         return question;

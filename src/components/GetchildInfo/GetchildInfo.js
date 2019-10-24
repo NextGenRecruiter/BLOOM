@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import AnswerForm from '../AnswerForm/AnswerForm'
 
 class GetChildInfo extends Component{
 
@@ -19,7 +20,6 @@ handleClick = () =>{
   render(){
     return(
       <div>
-      {/* {JSON.stringify(this.props.reduxState.newchildReducer)} */}
 
       {this.props.reduxState.newchildReducer.map(Child=>
       <div key={Child.id}>
@@ -38,6 +38,7 @@ handleClick = () =>{
       </Fab>
 
       <hr/>
+      <AnswerForm />
       </div>
     
     );

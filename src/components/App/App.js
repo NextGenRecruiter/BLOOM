@@ -18,6 +18,7 @@ import UserPage from '../UserPage/UserPage';
 import AddChild from '../AddChild/AddChild';
 import Milestone from '../Milestones/Milestones';
 import Form from '../DMForm/DMForm';
+import EditAnswer from '../EditAnswer/EditAnswer'
 
 import './App.css';
 
@@ -66,6 +67,11 @@ class App extends Component {
               exact
               path="/form/:type"
               render={({match})=><Form match={match}/>}
+            />
+            <ProtectedRoute
+              exact
+              path="/form/:type"
+              render={({match})=><EditAnswer match={match}/>}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

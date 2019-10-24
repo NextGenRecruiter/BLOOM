@@ -30,4 +30,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState
 });
 
-export default withRouter( connect(mapReduxStateToProps)(Milestone));
+export default withRouter(connect(mapReduxStateToProps)(Milestone));
