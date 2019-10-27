@@ -13,7 +13,6 @@ class GetChildInfo extends Component{
 
 handleClick = () =>{
   console.log('hello from handle click');
-  
   this.props.history.push('/milestone');
 }
 
@@ -38,7 +37,7 @@ handleClick = () =>{
       </Fab>
 
       <hr/>
-      <AnswerForm />
+     <AnswerForm />
       </div>
     
     );

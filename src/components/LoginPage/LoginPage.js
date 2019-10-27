@@ -22,7 +22,7 @@ class LoginPage extends Component {
       this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
   } // end login
-
+''
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
       [propertyName]: event.target.value,

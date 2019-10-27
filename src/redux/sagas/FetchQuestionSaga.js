@@ -8,9 +8,7 @@ function* fetchQuestion(action) {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,
     };
-
-    const response = yield axios.get(`/api/question/${action.payload}`, config);
-
+    const response = yield axios.get(`/api/question/${action.payload}`, config);    
     // now that the session has given us a child object
     yield put({ type: 'GET_QUESTION', payload: response.data });
   } catch (error) {

@@ -3,7 +3,6 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/:type', (req, res) => {
-
     let queryText = `SELECT * FROM "question"
                      WHERE "milestone"=$1;`;
     pool.query(queryText, [req.params.type])

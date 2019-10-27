@@ -8,11 +8,13 @@ function* fetchAnswers(action) {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,
     };
-
-    const response = yield axios.get('/api/answer', config);
+    console.log(action.payload);
+    
+    const response = yield axios.get(`/api/answer/${action.payload}`, config);
 
     // now that the session has given us a child object
     yield put({ type: 'GET_ANSWER', payload: response.data });
+    console.log(response.data);
   } catch (error) {
     console.log('answer get request failed', error);
   }

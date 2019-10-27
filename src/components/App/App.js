@@ -18,9 +18,10 @@ import UserPage from '../UserPage/UserPage';
 import AddChild from '../AddChild/AddChild';
 import Milestone from '../Milestones/Milestones';
 import Form from '../DMForm/DMForm';
-import EditAnswer from '../EditAnswer/EditAnswer'
+import AnswerForm from '../AnswerForm/AnswerForm'
 
 import './App.css';
+import EditAnswer from '../EditAnswer/EditAnswer';
 
 class App extends Component {
   componentDidMount () {
@@ -70,7 +71,7 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
-              path="/form/:type"
+              path="/answer/:type"
               render={({match})=><EditAnswer match={match}/>}
             />
             {/* If none of the other routes matched, we will show a 404. */}
