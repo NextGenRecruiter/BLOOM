@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button';
+import Swal from 'sweetalert2';
+
 
 class EditAnswer extends Component{
   state={ 
@@ -44,6 +46,15 @@ componentDidUpdate(prevProps) {
     // this.props.dispatch({type:'ADD_ANSWER', payload:this.state});
     
     
+  }
+
+  handleDelete = () => {
+    this.props.dispatch({type:'DELETE_ANSWER', payload:this.state});
+    Swal.fire(
+      'DELETE',
+      'Form has be deleted',
+      'success'
+    )
   }
 
 
@@ -120,7 +131,7 @@ componentDidUpdate(prevProps) {
                   )}
                   <Button>Edit</Button>
                   <br/>
-                  <Button color="secondary">Delete</Button>
+                  {/* <Button color="secondary" variant="contained" onClick={this.handleDelete}>Delete</Button> */}
 
      {/* ////////////////////////////////////////////////// */}
  
