@@ -129,9 +129,9 @@ componentDidUpdate(prevProps) {
                   </div>
                    ):(null)
                   )}
-                  <Button>Edit</Button>
+                  <Button variant="contained" color="primary">Edit</Button>
                   <br/>
-                  {/* <Button color="secondary" variant="contained" onClick={this.handleDelete}>Delete</Button> */}
+                  <Button color="secondary" variant="contained" onClick={this.handleDelete}>Delete</Button>
 
      {/* ////////////////////////////////////////////////// */}
  

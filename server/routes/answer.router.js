@@ -71,31 +71,32 @@ router.get('/:type', rejectUnauthenticated, (req, res) => {
 
 });
 //DELETE answer route
-// router.delete('/:type', rejectUnauthenticated, (req, res) => {  
-//     const answer = req.body;
-//     console.log('in delete',answer);
+router.delete('/:type', rejectUnauthenticated, (req, res) => {  
+    const answer = req.body;
 
-//     for (let i = 0; i < answer.EdittedAnswer.length; i++) {
-//         const values = [
-//             answer.EdittedAnswer[i].milestone,
-//         ]
-//         console.log(values);
+    console.log('in delete',answer);
 
-//         const query = `DELETE FROM "answer" WHERE "milestone"=$1;`;
+    for (let i = 0; i < answer.EdittedAnswer.length; i++) {
+        const values = [
+            answer.EdittedAnswer[i].milestone,
+        ]
+        console.log(values);
 
-//         pool.query(query, values).then((results) => {
+        const query = `DELETE FROM "answer" WHERE "milestone"=$1;`;
 
-//             // res.sendStatus(201);
+        pool.query(query, values).then((results) => {
 
-//         }).catch((error) => {
-//             console.log('ERROR with INSERT ', error);
+            // res.sendStatus(201);
 
-//             res.sendStatus(500);
-//         })
-//     }
+        }).catch((error) => {
+            console.log('ERROR with INSERT ', error);
+
+            res.sendStatus(500);
+        })
+    }
 
 
-// });
+});
 
 
 module.exports = router;

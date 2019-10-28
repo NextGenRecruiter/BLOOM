@@ -8,13 +8,16 @@
 
 .nav {
   overflow: hidden;
-  background-color: #00acb0;
-  background-image: url(bloom.png);
+  background-color: white;
+  background-image: url(bloom2.png);
+  background-size: 300px, 300px;
+  width: 100%;
+  background-repeat: no-repeat;
 }
 
 .nav-link {
-  float: left;
-  color: #f2f2f2;
+  float: top;
+  color: teal;
   /* background-color: #00acb0; */
   text-align: center;
   padding: 24px 10px;
@@ -29,7 +32,7 @@
 }
 
 .nav-link:hover {
-  background-color: #008183;
+  background-color: (0, 0, 0, 0.5);
 }
 
 .nav-right {

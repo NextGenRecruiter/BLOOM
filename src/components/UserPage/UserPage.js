@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
+
 // import LogOutButton from '../LogOutButton/LogOutButton';
 
 // this could also be written with destructuring parameters as:
@@ -24,9 +26,8 @@ const UserPage = (props) => (
        including versions of Lorem Ipsum.
     </p>
 
-    <h1>
-      Helpful Resources
-    </h1>
+    <Button variant="outlined" fullWidth={true} color="primary">Chat with Watson and get your answers quicker</Button>
+
   </div>
 );
 

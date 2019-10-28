@@ -6,11 +6,10 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
+import ListItemText from '@material-ui/core/ListItemText';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
 import Swal from 'sweetalert2';
 
@@ -98,10 +97,11 @@ componentDidUpdate(prevProps) {
            <Typography >Motor</Typography>
          </ExpansionPanelSummary>
          <ExpansionPanelDetails>
+         <List>
          {this.state.answers.map(question => question.type === "motor" ? (
                <div key={question.question_id}>
                   <label>
-                  <p>{question.question}</p>
+                  <ListItemText primary={question.question} />
                 <Checkbox
                   value={question.answer}
                   onChange={this.handleChange(question.question_id)}
@@ -110,7 +110,7 @@ componentDidUpdate(prevProps) {
                </div>
                 ):(null)
                )}
-
+            </List>
          </ExpansionPanelDetails>
      </ExpansionPanel>   
      
@@ -121,18 +121,20 @@ componentDidUpdate(prevProps) {
            <Typography >Communication and Language</Typography>
          </ExpansionPanelSummary>
          <ExpansionPanelDetails>
+         <List>
          {this.state.answers.map(question => question.type === "Talking" ? (
-              <div key={question.question_id}>
-                <label>
-                <p>{question.question}</p>
-                  <Checkbox
+               <div key={question.question_id}>
+                  <label>
+                  <ListItemText primary={question.question} />
+                <Checkbox
                   value={question.answer}
                   onChange={this.handleChange(question.question_id)}
-                    />
+                />
                   </label>
-                  </div>
+               </div>
                 ):(null)
                )}
+            </List>
          </ExpansionPanelDetails>
      </ExpansionPanel>       
 
@@ -145,18 +147,20 @@ componentDidUpdate(prevProps) {
           <Typography >Social and Emotional</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-        {this.state.answers.map(question => question.type === "Interacting" ? (
-              <div key={question.question_id}>
-                <label>
-                <p>{question.question}</p>
+        <List>
+         {this.state.answers.map(question => question.type === "Interacting" ? (
+               <div key={question.question_id}>
+                  <label>
+                  <ListItemText primary={question.question} />
                 <Checkbox
-                value={question.answer}
-                onChange={this.handleChange(question.question_id)}
-                  />
-                </label>
-                  </div>
-               ):(null)
-              )}
+                  value={question.answer}
+                  onChange={this.handleChange(question.question_id)}
+                />
+                  </label>
+               </div>
+                ):(null)
+               )}
+            </List>
         </ExpansionPanelDetails>
       </ExpansionPanel>   
 
@@ -168,18 +172,20 @@ componentDidUpdate(prevProps) {
           <Typography >Cognitive</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-        {this.state.answers.map(question => question.type === "Thinking" ? (
-              <div key={question.question_id}>
-                <label>
-                <p>{question.question}</p>
-                  <Checkbox
+        <List>
+         {this.state.answers.map(question => question.type === "Thinking" ? (
+               <div key={question.question_id}>
+                  <label>
+                  <ListItemText primary={question.question} />
+                <Checkbox
                   value={question.answer}
                   onChange={this.handleChange(question.question_id)}
-                    />
+                />
                   </label>
-                    </div>    
-               ):(null)
-              )}
+               </div>
+                ):(null)
+               )}
+            </List>
         </ExpansionPanelDetails>
       </ExpansionPanel>  
 

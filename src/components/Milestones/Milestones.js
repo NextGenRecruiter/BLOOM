@@ -19,13 +19,13 @@ handleClick = (milestone) =>{
 
     return(
         <div>
-        <Button variant="contained" size="large" color="primary" onClick={()=>this.handleClick('newborn')}>Newborn</Button>
-        <Button variant="contained" size="large" color="primary" onClick={()=>this.handleClick('one-month')}>One Month</Button>
-        <Button variant="contained" size="large" color="primary" onClick={()=>this.handleClick('two-months')}>Two Months</Button>
-        <Button variant="contained" size="large" color="primary" onClick={()=>this.handleClick('three-months')}>Three Months</Button>
-        <Button variant="contained" size="large" color="primary" onClick={()=>this.handleClick('four-months')}>Four Months</Button>
-        <Button variant="contained" size="large" color="primary" onClick={()=>this.handleClick('six-months')}>Six Months</Button>
-        <Button variant="contained" size="large" color="primary" onClick={()=>this.handleClick('nine-months')}>Nine Months</Button>
+        <Button variant="outlined" fullWidth={true} color="primary" onClick={()=>this.handleClick('newborn')}>Newborn</Button>
+        <Button variant="outlined" fullWidth={true} color="primary" onClick={()=>this.handleClick('one-month')}>One Month</Button>
+        <Button variant="outlined" fullWidth={true} color="primary" onClick={()=>this.handleClick('two-months')}>Two Months</Button>
+        <Button variant="outlined" fullWidth={true} color="primary" onClick={()=>this.handleClick('three-months')}>Three Months</Button>
+        <Button variant="outlined" fullWidth={true} color="primary" onClick={()=>this.handleClick('four-months')}>Four Months</Button>
+        <Button variant="outlined" fullWidth={true} color="primary" onClick={()=>this.handleClick('six-months')}>Six Months</Button>
+        <Button variant="outlined" fullWidth={true} color="primary" onClick={()=>this.handleClick('nine-months')}>Nine Months</Button>
         </div>
     )
 }
