@@ -6,6 +6,7 @@ function* deleteAnswer(action) {
   try {
     console.log('in delete saga',action.payload);
     yield axios.delete('/api/answer', action.payload);
+    yield put({ type: 'GET_ANSWER'});
   } catch (error) {
     console.log('answer delete request failed', error);
   }

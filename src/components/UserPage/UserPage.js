@@ -15,15 +15,11 @@ const UserPage = (props) => (
     {/* <p>Your ID is: {props.user.id}</p>
     <LogOutButton className="log-in" /> */}
     <p>
-    Lorem Ipsum is simply dummy text of 
-    the printing and typesetting industry. Lorem 
-    Ipsum has been the industry's standard dummy text ever since the 1500s, 
-    when an unknown printer took a galley of type and scrambled it to make a
-     type specimen book. It has survived not only five centuries, but also the
-      leap into electronic typesetting, remaining essentially unchanged. It was 
-      popularised in the 1960s with the release of Letraset sheets containing Lorem 
-      Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
-       including versions of Lorem Ipsum.
+    Children develop in certain predictable ways, referred to as developmental milestones. 
+    Milestones cover four areas of a child's development -- cognitive, communication and language, 
+    social and emotional, and motor. Milestones help you understand how your child learns and grows. 
+    Please select a child's age or a specific area of development to learn more about milestones at certain 
+    ages.
     </p>
 
     <Button variant="outlined" fullWidth={true} color="primary">Chat with Watson and get your answers quicker</Button>

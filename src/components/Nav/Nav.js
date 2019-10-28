@@ -6,8 +6,9 @@ import './Nav.css';
 
 const Nav = (props) => (
   <div className="nav">
+    {/* <img src="bloom2.png" alt="Bloom app logo"/> */}
     <Link to="/home">
-      <h2 className="nav-title">BLOOM</h2>
+      <h2 className="nav-title"></h2>
     </Link>
     <div className="nav-right">
       <Link className="nav-link" to="/home">

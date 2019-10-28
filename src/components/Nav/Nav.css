@@ -9,9 +9,10 @@
 .nav {
   overflow: hidden;
   background-color: white;
+  background-size: 400px, 200px;
   background-image: url(bloom2.png);
-  background-size: 300px, 300px;
-  width: 100%;
+  /* width: px; */
+  height: 200px;
   background-repeat: no-repeat;
 }
 

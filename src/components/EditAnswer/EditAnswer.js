@@ -42,7 +42,7 @@ componentDidUpdate(prevProps) {
     })
 }
 
-  handleSubmit = () =>{
+  handleEdit = () =>{
     // this.props.dispatch({type:'ADD_ANSWER', payload:this.state});
     
     
@@ -129,7 +129,7 @@ componentDidUpdate(prevProps) {
                   </div>
                    ):(null)
                   )}
-                  <Button variant="contained" color="primary">Edit</Button>
+                  <Button variant="contained" color="primary" onClick={this.handleEdit}>Edit</Button>
                   <br/>
                   <Button color="secondary" variant="contained" onClick={this.handleDelete}>Delete</Button>
 

@@ -71,32 +71,43 @@ router.get('/:type', rejectUnauthenticated, (req, res) => {
 
 });
 //DELETE answer route
-router.delete('/:type', rejectUnauthenticated, (req, res) => {  
-    const answer = req.body;
-
-    console.log('in delete',answer);
+router.delete('/', rejectUnauthenticated, (req, res) => { 
+    const answer = req.body; 
+    console.log('in delete', answer.EdittedAnswer);
 
     for (let i = 0; i < answer.EdittedAnswer.length; i++) {
-        const values = [
-            answer.EdittedAnswer[i].milestone,
-        ]
-        console.log(values);
-
+        
         const query = `DELETE FROM "answer" WHERE "milestone"=$1;`;
 
-        pool.query(query, values).then((results) => {
+        pool.query(query).then((results) => {
 
             // res.sendStatus(201);
 
         }).catch((error) => {
-            console.log('ERROR with INSERT ', error);
+            console.log('ERROR with DELETE ', error);
 
             res.sendStatus(500);
         })
     }
 
 
-});
+});//end DELETE router
+
+// PUT
+router.put('/', rejectUnauthenticated, (req, res) => {
+    let update = req.body;
+    
+    let queryText = `UPDATE "answer" SET "answer" = $1 WHERE "id" = $2;`;
+    pool.query(queryText, [update.questions, update.id])
+        .then(results => {
+            console.log('In update', update);
+            res.sendStatus(201);
+        })
+        .catch(error => {
+            console.log(error);
+            res.sendStatus(500);
+        })
+}); // end router.PUT
 
 
 module.exports = router;

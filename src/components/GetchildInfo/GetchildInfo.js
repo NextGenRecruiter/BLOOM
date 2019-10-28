@@ -32,6 +32,7 @@ handleClick = () =>{
         <br/>
         Gender: {Child.gender}
       </div>)}
+      <p>Click the blue plus button to fill a new milestone form</p>
       <Fab color="primary" aria-label="Add" onClick={this.handleClick}>
         <AddIcon />
       </Fab>

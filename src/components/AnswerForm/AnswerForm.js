@@ -28,6 +28,8 @@ componentDidUpdate(prevProps) {
         this.setState({showContent_MilesstoneOneMonth:true})        
       }else if(this.props.reduxState.answerReducer[i].milestone == 'two-months'){
         this.setState({showContent_MilesstoneTwoMonth:true})        
+      }else if(this.props.reduxState.answerReducer[i].milestone == 'three-months'){
+        this.setState({showContent_MilesstoneThreeMonths:true})        
       }
     }
 }
