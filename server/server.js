@@ -15,7 +15,7 @@ const questionRouter = require('./routes/question.router')
 const answerRouter = require('./routes/answer.router')
 
 // Body parser middleware
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '1 gb'}));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Passport Session Configuration //

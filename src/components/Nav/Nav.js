@@ -6,7 +6,7 @@ import './Nav.css';
 
 const Nav = (props) => (
   <div className="nav">
-    {/* <img src="bloom2.png" alt="Bloom app logo"/> */}
+
     <Link to="/home">
       <h2 className="nav-title"></h2>
     </Link>
@@ -30,7 +30,9 @@ const Nav = (props) => (
             Add New Child
           </Link>
       <LogOutButton className="nav-link"/>
+      
     </div>
+  
   </div>
 );
 

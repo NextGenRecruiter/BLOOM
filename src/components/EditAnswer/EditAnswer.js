@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button';
 import Swal from 'sweetalert2';
+import {withRouter} from 'react-router-dom'
 
 
 class EditAnswer extends Component{
@@ -49,7 +50,8 @@ componentDidUpdate(prevProps) {
   }
 
   handleDelete = () => {
-    this.props.dispatch({type:'DELETE_ANSWER', payload:this.state});
+    this.props.dispatch({type:'DELETE_ANSWER', payload:this.state.EdittedAnswer[2].milestone});
+    this.props.history.push('/about');
     Swal.fire(
       'DELETE',
       'Form has be deleted',
@@ -158,4 +160,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState
 }); 
 
-export default connect(mapReduxStateToProps)(EditAnswer);
+export default withRouter(connect(mapReduxStateToProps)(EditAnswer));

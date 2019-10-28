@@ -71,15 +71,15 @@ router.get('/:type', rejectUnauthenticated, (req, res) => {
 
 });
 //DELETE answer route
-router.delete('/', rejectUnauthenticated, (req, res) => { 
+router.delete('/:delete', rejectUnauthenticated, (req, res) => { 
     const answer = req.body; 
-    console.log('in delete', answer.EdittedAnswer);
+    console.log('in delete', answer);
 
-    for (let i = 0; i < answer.EdittedAnswer.length; i++) {
+    // for (let i = 0; i < answer.EdittedAnswer.length; i++) {
         
         const query = `DELETE FROM "answer" WHERE "milestone"=$1;`;
 
-        pool.query(query).then((results) => {
+        pool.query(query, [req.params.delete]).then((results) => {
 
             // res.sendStatus(201);
 
@@ -88,7 +88,7 @@ router.delete('/', rejectUnauthenticated, (req, res) => {
 
             res.sendStatus(500);
         })
-    }
+    
 
 
 });//end DELETE router

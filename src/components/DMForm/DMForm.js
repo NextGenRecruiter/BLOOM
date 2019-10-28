@@ -12,8 +12,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
 import Swal from 'sweetalert2';
-
-
+import {withRouter} from 'react-router-dom'
 
 
 const styles = theme => ({
@@ -76,12 +75,16 @@ componentDidUpdate(prevProps) {
 
   handleSubmit = () =>{
     this.props.dispatch({type:'ADD_ANSWER', payload:this.state});
+    this.setState({
+      child_id:[],
+      answers:[]
+    })
     Swal.fire(
       'Good job!',
       'New milestone has been added!',
       'success'
     )
-    
+    this.props.history.push('/about');
   }
 
 
@@ -214,4 +217,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState
 }); 
 
-export default withStyles(styles)(connect(mapReduxStateToProps)(DMForm));
+export default withRouter(withStyles(styles)(connect(mapReduxStateToProps)(DMForm)));

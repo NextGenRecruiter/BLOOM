@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
                   newChild.Age, 
                   newChild.gender,
                   newChild.Relationship, 
-                  newChild.picture]
+                  newChild.picture.image]
 
     console.log(newChild);   
     const query = `INSERT INTO "child" ("user_id","firstname","lastname","age", "gender","Relationship","picture") VALUES ($1,$2,$3,$4,$5,$6,$7)
