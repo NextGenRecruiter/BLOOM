@@ -78,19 +78,24 @@ class AddChild extends Component{
          First Name
          <input type="text" onChange={(event) => this.handleChange(event, "firstName")}  />
        </label>
+       <br/>
        <label>
        Last Name
          <input type="text" onChange={(event)=>this.handleChange(event,"lastName")}/>
        </label>
+       <br/>
        <label>
          Gender
          <input type="text" onChange={(event => {this.handleChange(event,"gender")})}/>
        </label>
       <UploadPicture  setPic={this.handleImage}/>
+      <br/>
        <label>
        Age
+       <br/>
          <input type="number" onChange={(event)=>this.handleChange(event, "Age")}/>
        </label>
+       <br/>
        <label>
        Relationship
          <input type="text" onChange={(event)=>this.handleChange(event, "Relationship")}/>
