@@ -7,7 +7,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 /**
  * POST route
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     const newChild = req.body;
     const values=[
                   req.user.id,
