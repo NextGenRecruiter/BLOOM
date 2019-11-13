@@ -1,24 +1,94 @@
-import { Conversation } from 'react-native-watson'
- 
-Conversation.initialize( "user", "password" )
-let workspaceId="your_workspace_id"
- 
-// To start the conversation, send a message with only the workspaceId
-Conversation.message(workspaceId)
-            .then(response => {
-                console.log(JSON.stringify(response))
-                this.setState({output: response.output.text, context: response.context})
-            })
-            
-// To continue a conversation, and send the user's response, send the workspaceId and the input (text and saved context)
- 
-let input = {
-                text: this.state.text,
-                context: this.state.context
-            }
- 
-Conversation.message(workspaceId, input)
-    .then(response => {
-        console.log(JSON.stringify(response))
-        this.setState({output: response.output.text, context: response.context})
-    })
+import React, { Component } from 'react';
+import Pusher from 'pusher-js';
+import './Chatbot.css';
+
+    class Chatbot extends Component {
+      state = {
+          userMessage: '',
+          conversation: [],
+        };
+      
+
+      componentDidMount() {
+        const pusher = new Pusher('<your app key>', {
+          cluster: '<your app cluster>',
+          encrypted: true,
+        });
+
+        const channel = pusher.subscribe('bot');
+        channel.bind('bot-response', data => {
+          const msg = {
+            text: data.message,
+            user: 'ai',
+          };
+          this.setState({
+            conversation: [...this.state.conversation, msg],
+          });
+        });
+      }
+
+      handleChange = event => {
+        this.setState({ userMessage: event.target.value });
+      };
+
+      handleSubmit = event => {
+        event.preventDefault();
+        if (!this.state.userMessage.trim()) return;
+
+        const msg = {
+          text: this.state.userMessage,
+          user: 'human',
+        };
+
+        this.setState({
+          conversation: [...this.state.conversation, msg],
+        });
+
+        fetch('http://localhost:5000/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: this.state.userMessage,
+          }),
+        });
+
+        this.setState({ userMessage: '' });
+      };
+
+      render() {
+        const ChatBubble = (text, i, className) => {
+          return (
+            <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
+              <span className="chat-content">{text}</span>
+            </div>
+          );
+        };
+
+        const chat = this.state.conversation.map((e, index) =>
+          ChatBubble(e.text, index, e.user)
+        );
+
+        return (
+          <div>
+            <h1>React Chatbot</h1>
+            <div className="chat-window">
+              <div className="conversation-view">{chat}</div>
+              <div className="message-box">
+                <form className="chatForm" onSubmit={this.handleSubmit}>
+                  <input
+                    value={this.state.userMessage}
+                    onInput={this.handleChange}
+                    className="text-input"
+                    type="text"
+                    autoFocus
+                    placeholder="Type your message and hit Enter to send"
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
+        );
+      }
+    }
+
+    export default Chatbot;

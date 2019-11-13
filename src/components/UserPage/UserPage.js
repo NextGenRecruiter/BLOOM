@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
+import ChatBot from '../IBMWatson/IBMWatson'
 
 // import LogOutButton from '../LogOutButton/LogOutButton';
 
@@ -21,9 +22,7 @@ const UserPage = (props) => (
     Please select a child's age or a specific area of development to learn more about milestones at certain 
     ages.
     </p>
-
-    <Button variant="outlined" fullWidth={true} color="primary">Chat with Watson and get your answers quicker</Button>
-
+    <ChatBot />
   </div>
 );
 

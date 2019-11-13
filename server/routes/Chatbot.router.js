@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const ask = require('./controller').ask;
+const processMessage = require('../../processMessage');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 
 /**
  * POST route
  */
-router.post('/', rejectUnauthenticated, (req, res, next) => {
-
-});
+router.post('/', (req, res) => {
+    const { message } = req.body;
+    processMessage(message)
+ });
 
 /**
  * GET route
