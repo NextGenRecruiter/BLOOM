@@ -60,14 +60,14 @@ class AnswerPage extends Component {
         return answer;
       }
     })
-    console.log('current state', this.state.answer, 'new state',updatedAnswers)
     this.setState({
       answer: updatedAnswers,
     })
   }
 
   handleSave = () => {
-
+    this.props.dispatch({ type: 'EDIT_ANSWER', payload: this.state.answer});
+    // this.props.history.push('/about');
   }
 
   handleDelete = () => {
@@ -153,7 +153,7 @@ class AnswerPage extends Component {
           ) : (null)
           )}
           <Button variant="contained" color="primary" onClick={this.handleEdit}>Edit</Button>
-          <br />
+          <br/>
         </> : <>{this.state.answer.map(answer => answer.question_type === "motor" ? (
           <div key={answer.id}>
             <label>
@@ -195,12 +195,12 @@ class AnswerPage extends Component {
               <div key={answer.id}>
                 <label>
                   <p>{answer.question}</p>
-                  <Button variant='outlined'>
+                  <Button variant='outlined' onClick={this.handleEditAnswer(answer.id)}>
                     {
                       answer.answer == true ?
-                        <p>TRUE</p>
+                        <>TRUE</>
                         :
-                        <p>FALSE</p>
+                        <>FALSE</>
                     }
                   </Button>
                 </label>
@@ -213,12 +213,12 @@ class AnswerPage extends Component {
               <div key={answer.id}>
                 <label>
                   <p>{answer.question}</p>
-                  <Button variant='outlined'>
+                  <Button variant='outlined' onClick={this.handleEditAnswer(answer.id)}>
                     {
                       answer.answer == true ?
-                        <p>TRUE</p>
+                        <>TRUE</>
                         :
-                        <p>FALSE</p>
+                        <>FALSE</>
                     }
                   </Button>
                 </label>

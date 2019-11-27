@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Pusher from 'pusher-js';
+import TextField from '@material-ui/core/TextField';
 import './Chatbot.css';
 
     class Chatbot extends Component {
@@ -7,13 +8,11 @@ import './Chatbot.css';
           userMessage: '',
           conversation: [],
         };
-      
-
-      componentDidMount() {
-        const pusher = new Pusher('<your app key>', {
-          cluster: '<your app cluster>',
-          encrypted: true,
-        });
+        componentDidMount() {
+          const pusher = new Pusher("2e943924eacca8cc92f6", {
+            cluster: "us2",
+            encrypted: true,
+          });
 
         const channel = pusher.subscribe('bot');
         channel.bind('bot-response', data => {
@@ -43,15 +42,13 @@ import './Chatbot.css';
         this.setState({
           conversation: [...this.state.conversation, msg],
         });
-
-        fetch('http://localhost:5000/chat', {
+        fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             message: this.state.userMessage,
           }),
         });
-
         this.setState({ userMessage: '' });
       };
 
@@ -70,18 +67,19 @@ import './Chatbot.css';
 
         return (
           <div>
-            <h1>React Chatbot</h1>
+            <h1>Chat with Bloom Agent</h1>
             <div className="chat-window">
               <div className="conversation-view">{chat}</div>
               <div className="message-box">
                 <form className="chatForm" onSubmit={this.handleSubmit}>
-                  <input
+                <TextField
+                    id="standard-full-width"
                     value={this.state.userMessage}
-                    onInput={this.handleChange}
+                    onChange={this.handleChange}
                     className="text-input"
                     type="text"
-                    autoFocus
-                    placeholder="Type your message and hit Enter to send"
+                    fullWidth
+                    placeholder="Hit Enter to send your inquiry"
                   />
                 </form>
               </div>
