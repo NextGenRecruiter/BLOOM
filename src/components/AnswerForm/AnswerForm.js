@@ -71,7 +71,7 @@ handleClick = (milestone) =>{
     return(
         <div>
            {showContent.showContent_MilesstoneNewBorn === true ? ( 
-        <Button variant="outlined" fullWidth={true} size="large" color="primary" onClick={()=>this.handleClick('newborn')}>Newborn</Button>
+        <Button variant="contained" color="secondary" fullWidth={true} size="large" onClick={()=>this.handleClick('newborn')}>Newborn</Button>
           ) : (null)}                 
            {showContent.showContent_MilesstoneOneMonth === true ? ( 
         <Button variant="outlined" fullWidth={true} size="large" color="primary" onClick={()=>this.handleClick('one-month')}>1 Month</Button>

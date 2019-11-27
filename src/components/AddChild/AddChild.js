@@ -1,81 +1,58 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Swal from 'sweetalert2';
-import TextField from '@material-ui/core/TextField';
 import UploadPicture from '../UploadImage/UploadImage'
+import TextField from '@material-ui/core/TextField';
+import blue from '@material-ui/core/colors/blue';
+import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { withStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+  },
+  typography: {
+    useNextVariants: true,
+  },
+});
 
-
-// This is one of our simplest components
-// It doesn't have local state, so it can be a function component.
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is, so it doesn't need 'connect()'
-// const styles = theme => ({
-//   container: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-//   },
-//   textField: {
-//     marginLeft: theme.spacing.unit,
-//     marginRight: theme.spacing.unit,
-//     width: 200,
-//   },
-//   dense: {
-//     marginTop: 19,
-//   },
-//   menu: {
-//     width: 200,
-//   },
-// });
-// const gender = [
-//   {
-//     value: 'female',
-//     label: 'female',
-//   },
-//   {
-//     value: 'male',
-//     label: 'male',
-//   },
-// ]
-class AddChild extends Component{
+class AddChild extends Component {
   state = {
-    newChild:{
-      firstName:'',
-      lastName:'',
-      Age:0,
-      gender:'',
-      Relationship:'',
-      picture:''
+    newChild: {
+      firstName: '',
+      lastName: '',
+      Age: 0,
+      gender: '',
+      Relationship: '',
+      picture: ''
     }
   }
 
-  handleChange = (event, addChild) =>{
+  handleChange = (event, addChild) => {
     console.log("in handleChange for add new child", event.target.value)
     this.setState({
-      newChild:{
+      newChild: {
         ...this.state.newChild,
-      [addChild]:event.target.value
+        [addChild]: event.target.value
       }
-      
+
     })
   }
-  handleSubmit = (event) =>{
+  handleSubmit = (event) => {
     event.preventDefault();
-    this.props.dispatch({type:'ADD_CHILD', payload:this.state.newChild});
+    this.props.dispatch({ type: 'ADD_CHILD', payload: this.state.newChild });
 
     this.setState({
-      newChild:{
-        firstName:'',
-        lastName:'',
-        Age:0,
-        gender:'',
-        Relationship:'',
-        picture:''
+      newChild: {
+        firstName: '',
+        lastName: '',
+        Age: 0,
+        gender: '',
+        Relationship: '',
+        picture: ''
       }
     })
     Swal.fire(
@@ -86,114 +63,84 @@ class AddChild extends Component{
     this.props.history.push('/about');
   }
 
-  handleImage = (imageUrl) =>{
+  handleImage = (imageUrl) => {
     this.setState({
-      newChild:{
+      newChild: {
         ...this.state.newChild,
         picture: imageUrl
       }
     })
   }
 
- 
-
-  resetForm = () =>{
+  resetForm = () => {
     console.log('hello from reset');
-    
+
   }
 
-  render(){
-    // const { classes } = this.props;
-    return(
+  render() {
+    return (
       <div>
-       <form onSubmit={this.handleSubmit}>
-       <label>
-         First Name
-         <br/>
-         <input type="text" onChange={(event) => this.handleChange(event, "firstName")}  />
-       </label>
-       <br/>
-       <label>
-       Last Name
-        <br/>
-         <input type="text" onChange={(event)=>this.handleChange(event,"lastName")}/>
-       </label>
-       <br/>
-       <label>
-         Gender
-         <br/>
-         <input type="text" onChange={(event => {this.handleChange(event,"gender")})}/>
-       </label>
-      <UploadPicture  setPic={this.handleImage}/>
-      <br/>
-       <label>
-       Age
-       <br/>
-         <input type="number" onChange={(event)=>this.handleChange(event, "Age")}/>
-       </label>
-       <br/>
-       <label>
-       Relationship
-       <br/>
-         <input type="text" onChange={(event)=>this.handleChange(event, "Relationship")}/>
-       </label>
-       <br/>
-       <input className="log-in" type="submit" value="Submit" />
-       <br/>
-       <input className="log-in" type="button" value="Cancel" onClick={this.resetForm}/>
-     </form> 
-
-        {/* <TextField
-          label="First Name"
-          onChange={(event) => this.handleChange(event, "firstName")}
-          margin="normal"
-        />
-        <br/>
-        <TextField
-          label="Last Name"
-          onChange={(event) => this.handleChange(event, "lastName")}
-          margin="normal"
-        />
-        <br/>
-        <TextField
-          id="standard-select-currency"
-          select
-          label="Gender"
-          onChange={(event => {this.handleChange(event,"gender")})}
-          SelectProps={{
-            MenuProps: {
-              className: classes.menu,
-            },
-          }}
-          helperText="Please select the gender of the child"
-          margin="normal"
-        >
-          {gender.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-          <br/>
-        <TextField
-          label="Age"
-          onChange={(event)=>this.handleChange(event, "Age")}
-          margin="normal"
-          type="number"
-        />
-        <br/>
-         <TextField
-          label="Relationship to Child"
-          onChange={(event)=>this.handleChange(event, "Relationship")}
-          margin="normal"
-        /> */}
-
-
-
-
-
-
-    </div>
+        <MuiThemeProvider theme={theme}>
+          <form onSubmit={this.handleSubmit} autoComplete="off">
+            <TextField
+              label="First Name"
+              variant="outlined"
+              onChange={(event) => this.handleChange(event, "firstName")}
+              margin="normal"
+            />
+            <br />
+            <TextField
+              label="Last Name"
+              variant="outlined"
+              onChange={(event) => this.handleChange(event, "firstName")}
+              margin="normal"
+            />
+            <br />
+            <FormControl>
+              <InputLabel htmlFor="name">gender</InputLabel>
+              <Select
+                native
+                // required
+                value={this.state.gender}
+                onChange={(event) => this.handleChange(event, "Relationship")}
+                inputProps={{
+                  name: 'gender',
+                  id: 'gender'
+                }}
+              >
+                <option value="" />
+                <option value={"female"}>Female</option>
+                <option value={"male"}>Male</option>
+              </Select>
+            </FormControl>
+            <UploadPicture setPic={this.handleImage} />
+            <br />
+            <TextField
+              id="outlined-number"
+              label="Number"
+              value={this.state.Age}
+              onChange={(event) => this.handleChange(event, "Age")}
+              type="number"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              margin="normal"
+              variant="outlined"
+            />
+            <br />
+            <TextField
+              label="Relationship"
+              variant="outlined"
+              onChange={(event) => this.handleChange(event, "Relationship")}
+              margin="normal"
+            />
+            <br />
+            <input className="log-in" type="submit" value="Submit" />
+            <br />
+            <input className="log-in" type="button" value="Cancel" onClick={this.resetForm} />
+          </form>
+        </MuiThemeProvider>
+      </div>
     )
   }
 

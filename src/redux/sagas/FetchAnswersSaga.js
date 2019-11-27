@@ -18,10 +18,19 @@ function* fetchAnswers(action) {
   } catch (error) {
     console.log('answer get request failed', error);
   }
-}
-
+}//end fetchAnswers function
+function* editAnswer(action) {
+  try {
+    yield console.log(action.payload);
+      yield axios.put(`/api/answer/edit`, action.payload );
+      // yield fetchAnswers();
+    } catch (error) {
+      console.log('error in update answer saga', error);
+  }
+} // end editAnswer function
 function* FetchAnswerSaga() {
   yield takeLatest('FETCH_ANSWER', fetchAnswers);
+  yield takeLatest('EDIT_ANSWER', editAnswer);
 }
 
 export default FetchAnswerSaga;

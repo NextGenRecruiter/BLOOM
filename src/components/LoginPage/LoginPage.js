@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
+import { InputAdornment } from '@material-ui/core';
+import Person from '@material-ui/icons/Person';
+import Lock from '@material-ui/icons/Lock';
 import { connect } from 'react-redux';
+import blue from '@material-ui/core/colors/blue';
+import Button from '@material-ui/core/Button';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+  },
+  typography: {
+    useNextVariants: true,
+  },
+});
 class LoginPage extends Component {
   state = {
     username: '',
@@ -40,48 +56,49 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form onSubmit={this.login}>
-          <h1>Login</h1>
-          <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
-          </div>
-          <div>
-            <input
-              className="log-in"
-              type="submit"
-              name="submit"
-              value="Log In"
-            />
-          </div>
-        </form>
-        <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
-          >
-            Register
+        <MuiThemeProvider theme={theme}>
+        <form className='loginForm' onSubmit={this.login}>
+                <div>
+                  <TextField
+                    id="filled-username-input"
+                    label="User Name"
+                    type="text"
+                    name="username"
+                    margin="normal"
+                    variant="outlined"
+                    InputProps={{ startAdornment: <InputAdornment position="start"><Person /></InputAdornment> }}
+                    value={this.state.username}
+                    onChange={this.handleInputChangeFor('username')}
+                  />
+                  <br />
+                  <TextField
+                    id="filled-username-input"
+                    label="Password"
+                    type="password"
+                    name="password"
+                    margin="normal"
+                    variant="outlined"
+                    InputProps={{ startAdornment: <InputAdornment position="start"><Lock /></InputAdornment> }}
+                    value={this.state.password}
+                    onChange={this.handleInputChangeFor('password')}
+                  />
+                </div>
+                <br />
+                <div>
+                  <Button size='large' variant="contained" color="primary" onClick={this.login}>Login</Button>
+
+                  <br />
+                  <br />
+                  <button
+                    type="button"
+                    className="link-button"
+                    onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}
+                  >
+                    New? Create an Account
           </button>
-        </center>
+                </div>
+              </form>
+              </MuiThemeProvider>
       </div>
     );
   }
